@@ -1,0 +1,36 @@
+version: '2'
+services:
+    server:
+        container_name: ace-server
+        build: server
+        ports:
+            - "5005:8888"
+        links:
+            - dbserver
+        volumes:
+            - ${APP_DIR}:/home/app
+
+    dbserver:
+        container_name: ace-dbserver
+        image: mongo:latest
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+        ports:
+            - 27017:27017
+        volumes:
+            - mongodb_data_container:/data/db
+
+    client:
+        container_name: ace-client
+        build: client
+        restart: always
+        ports:
+            - "5000:8888"
+        links:
+            - server
+        volumes:
+            - ${CLIENT_DIR}:/home/app
+
+volumes:
+    mongodb_data_container:

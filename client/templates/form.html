@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body>
+
+        <form action="" method="POST">
+            <label>Element to save:</label>
+            <input type="text" name="item" />
+            <input type="submit" value="Send">
+        </form>
+
+        <hr>
+
+        <h4>Lists of elements</h4>
+        <ul>
+        {% for item in result %}
+            <li>{{ item }}</li>
+        {% endfor %}
+        </ul>
+
+    </body>
+</html>
