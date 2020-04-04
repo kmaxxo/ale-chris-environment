@@ -1,8 +1,20 @@
 from pymongo import MongoClient
 
+mongoConnection = {
+    'server': 'ace-dbserver',
+    'port': 27017,
+    'username': 'root',
+    'password': 'root'
+}
+
 class Schema:
     def __init__(self):
-        self.client = MongoClient('ace-dbserver', 27017, username='root', password='root')
+        self.client = MongoClient(
+            mongoConnection['server'],
+            mongoConnection['port'],
+            username=mongoConnection['username'],
+            password=mongoConnection['password']
+        )
         self.db = self.client['ace_todo_db']
         self.create_to_do_collection()
 
@@ -34,7 +46,12 @@ class Schema:
 class ToDoModel:
 
     def __init__(self):
-        self.client = MongoClient('ace-dbserver', 27017, username='root', password='root')
+        self.client = MongoClient(
+             mongoConnection['server'],
+             mongoConnection['port'],
+             username=mongoConnection['username'],
+             password=mongoConnection['password']
+         )
         self.db = self.client['ace_todo_db']
         self.collection = self.db['ace_todo_collection']
 
