@@ -24,7 +24,7 @@ services:
     client:
         container_name: ace-client
         build: client
-        restart: always
+#        restart: always
         ports:
             - "5000:8888"
         links:
